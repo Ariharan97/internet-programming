@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Shopping System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 id="title">Online Shopping System</h1>
+
+    <div class="product">
+        <h2>Laptop</h2>
+        <p>Price: $800</p>
+        <button>Buy Now</button>
+    </div>
+
+    <div class="product">
+        <h2>Mobile Phone</h2>
+        <p>Price: $500</p>
+        <button>Buy Now</button>
+    </div>
+
+</body>
+</html>
