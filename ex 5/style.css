@@ -1,0 +1,70 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background-color:pink;
+background-image:url('1.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+font-family:"Times New Roman",Times,serif;
+padding:20px;
+}
+
+#logo{
+text-align:center;
+margin:20px;
+}
+
+.top-nav{
+text-align:right;
+margin-bottom:10px;
+}
+
+h1,h2,p{
+color:black;
+}
+
+.search-box{
+border:2px solid black;
+padding:10px;
+margin:20px auto;
+width:200px;
+background-color:white;
+}
+
+.location{
+border:3px solid navy;
+padding:15px;
+margin:20px auto;
+width:650px;
+background-color:white;
+}
+
+a:link{
+color:blue;
+text-decoration:none;
+}
+
+a:visited{
+color:purple;
+}
+
+a:hover{
+color:red;
+text-decoration:underline;
+}
+
+a:active{
+color:green;
+}
+
+.box{
+border:2px solid black;
+padding:15px;
+margin:20px auto;
+width:850px;
+background-color:white;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML and CSS Online Examination</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: white;
+            border: 1px solid gray;
+            text-align: left;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 25px;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        input[type="radio"] {
+            margin: 8px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 30px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: darkblue;
+        }
+
+        input[type="submit"]:hover {
+            background-color: blue;
+        }
+
+        input[type="reset"] {
+            background-color: gray;
+        }
+
+        input[type="reset"]:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>HTML and CSS Online Examination</h1>
+
+    <form action="ExamServlet" method="post">
+
+        <!-- Name -->
+        <label><b>Name:</b></label>
+        <input type="text" name="username" required>
+
+
+        <!-- Question 1 -->
+        <h3>1. What is the correct HTML tag for creating a paragraph?</h3>
+
+        <input type="radio" name="q1" value="p" required> &lt;p&gt;<br>
+        <input type="radio" name="q1" value="paragraph"> &lt;paragraph&gt;<br>
+        <input type="radio" name="q1" value="para"> &lt;para&gt;<br>
+        <input type="radio" name="q1" value="text"> &lt;text&gt;<br>
+
+
+        <!-- Question 2 -->
+        <h3>2. Which CSS property is used to change the text color?</h3>
+
+        <input type="radio" name="q2" value="color" required> color<br>
+        <input type="radio" name="q2" value="text-color"> text-color<br>
+        <input type="radio" name="q2" value="font-color"> font-color<br>
+        <input type="radio" name="q2" value="text-style"> text-style<br>
+
+
+        <!-- Question 3 -->
+        <h3>3. Which HTML tag is used to create a hyperlink?</h3>
+
+        <input type="radio" name="q3" value="a" required> &lt;a&gt;<br>
+        <input type="radio" name="q3" value="link"> &lt;link&gt;<br>
+        <input type="radio" name="q3" value="href"> &lt;href&gt;<br>
+        <input type="radio" name="q3" value="url"> &lt;url&gt;<br>
+
+
+        <!-- Question 4 -->
+        <h3>4. Which HTML tag is used to display an image?</h3>
+
+        <input type="radio" name="q4" value="img" required> &lt;img&gt;<br>
+        <input type="radio" name="q4" value="image"> &lt;image&gt;<br>
+        <input type="radio" name="q4" value="picture"> &lt;picture&gt;<br>
+        <input type="radio" name="q4" value="src"> &lt;src&gt;<br>
+
+
+        <!-- Question 5 -->
+        <h3>5. Which CSS property is used to change the background color?</h3>
+
+        <input type="radio" name="q5" value="background-color" required> background-color<br>
+        <input type="radio" name="q5" value="bgcolor"> bgcolor<br>
+        <input type="radio" name="q5" value="background"> background<br>
+        <input type="radio" name="q5" value="color"> color<br>
+
+
+        <!-- Question 6 -->
+        <h3>6. Which HTML tag is used to create the largest heading?</h3>
+
+        <input type="radio" name="q6" value="h1" required> &lt;h1&gt;<br>
+        <input type="radio" name="q6" value="h6"> &lt;h6&gt;<br>
+        <input type="radio" name="q6" value="heading"> &lt;heading&gt;<br>
+        <input type="radio" name="q6" value="head"> &lt;head&gt;<br>
+
+
+        <!-- Question 7 -->
+        <h3>7. Which CSS property is used to change the font size?</h3>
+
+        <input type="radio" name="q7" value="font-size" required> font-size<br>
+        <input type="radio" name="q7" value="text-size"> text-size<br>
+        <input type="radio" name="q7" value="font-style"> font-style<br>
+        <input type="radio" name="q7" value="size"> size<br>
+
+
+        <!-- Question 8 -->
+        <h3>8. Which HTML tag is used to create an unordered list?</h3>
+
+        <input type="radio" name="q8" value="ul" required> &lt;ul&gt;<br>
+        <input type="radio" name="q8" value="ol"> &lt;ol&gt;<br>
+        <input type="radio" name="q8" value="list"> &lt;list&gt;<br>
+        <input type="radio" name="q8" value="li"> &lt;li&gt;<br>
+
+
+        <!-- Question 9 -->
+        <h3>9. Which CSS property is used to make text bold?</h3>
+
+        <input type="radio" name="q9" value="font-weight" required> font-weight<br>
+        <input type="radio" name="q9" value="text-bold"> text-bold<br>
+        <input type="radio" name="q9" value="font-bold"> font-bold<br>
+        <input type="radio" name="q9" value="bold"> bold<br>
+
+
+        <!-- Question 10 -->
+        <h3>10. Which HTML tag is used to create a line break?</h3>
+
+        <input type="radio" name="q10" value="br" required> &lt;br&gt;<br>
+        <input type="radio" name="q10" value="break"> &lt;break&gt;<br>
+        <input type="radio" name="q10" value="lb"> &lt;lb&gt;<br>
+        <input type="radio" name="q10" value="line"> &lt;line&gt;<br>
+
+
+        <!-- Question 11 -->
+        <h3>11. Which CSS property is used to align text to the center?</h3>
+
+        <input type="radio" name="q11" value="text-align" required> text-align<br>
+        <input type="radio" name="q11" value="align-text"> align-text<br>
+        <input type="radio" name="q11" value="text-center"> text-center<br>
+        <input type="radio" name="q11" value="align"> align<br>
+
+
+        <!-- Question 12 -->
+        <h3>12. Which HTML tag is used to create a table?</h3>
+
+        <input type="radio" name="q12" value="table" required> &lt;table&gt;<br>
+        <input type="radio" name="q12" value="tab"> &lt;tab&gt;<br>
+        <input type="radio" name="q12" value="tbl"> &lt;tbl&gt;<br>
+        <input type="radio" name="q12" value="data"> &lt;data&gt;<br>
+
+
+        <!-- Buttons -->
+        <div class="buttons">
+
+            <input type="submit" value="Submit">
+
+            <input type="reset" value="Reset">
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
