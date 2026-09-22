@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Registration | FITNESS HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            ⚡ FITNESS <span>HUB</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html" class="active">Register</a></li>
+            <li><a href="login.html" class="nav-btn">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Registration Form Wrapper -->
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>BECOME A <span>MEMBER</span></h2>
+                <p>Fill in your details below to create your FITNESS HUB account</p>
+            </div>
+
+            <!-- Dynamic Alert Banner for Servlet Server Errors -->
+            <div id="alertBanner" class="alert-banner" style="display: none;"></div>
+
+            <form id="registerForm" action="RegisterServlet" method="POST" novalidate>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Alex Johnson" required>
+                    <div id="nameError" class="error-message"></div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="e.g. alex@example.com" required>
+                    <div id="emailError" class="error-message"></div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="phone">Phone Number (10 Digits)</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210" maxlength="10" required>
+                    <div id="phoneError" class="error-message"></div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password (Min 6 Characters)</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+                    <div id="passwordError" class="error-message"></div>
+                </div>
+
+                <!-- Membership Plan -->
+                <div class="form-group">
+                    <label for="membership">Select Membership Plan</label>
+                    <select id="membership" name="membership" class="form-control" required>
+                        <option value="">-- Choose Plan --</option>
+                        <option value="Monthly">Monthly Plan - ₹1,000 / mo</option>
+                        <option value="Quarterly">Quarterly Plan - ₹2,500 / 3 mos</option>
+                        <option value="Yearly">Yearly Plan - ₹8,000 / yr</option>
+                    </select>
+                    <div id="membershipError" class="error-message"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                    Complete Registration ➔
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have a membership? <a href="login.html">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>FITNESS HUB</strong> &copy; 2026. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
