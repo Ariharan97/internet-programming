@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <style>
+
+        body
+        {
+            background-color: #f2f2f2;
+            font-family: Arial;
+        }
+
+        h1
+        {
+            text-align: center;
+            color: darkblue;
+        }
+
+        form
+        {
+            width: 300px;
+            margin: auto;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: white;
+        }
+
+        input
+        {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"]
+        {
+            background-color: lightblue;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+    </style>
+
+    <script>
+
+        function loginSuccess()
+        {
+            alert("Login Successful!");
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Login Page</h1>
+
+    <form onsubmit="loginSuccess(); return false;">
+
+        <label>Username</label><br>
+        <input type="text" required>
+
+        <label>Password</label><br>
+        <input type="password" required>
+
+        <input type="submit" value="Login">
+
+    </form>
+
+</body>
+</html>
