@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive AI-Based Personalized Learning Path & Roadmap System</title>
+  
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS Design System -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div id="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon"><i class="fa-solid fa-brain"></i></div>
+        <div>
+          <div class="brand-title">Adaptive AI Path</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Personalized Roadmap</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-view="dashboard-view">
+          <i class="fa-solid fa-chart-line"></i> Dashboard
+        </a>
+        <a href="#gamification" class="nav-item" data-view="gamification-view">
+          <i class="fa-solid fa-gamepad"></i> Gamification & XP
+        </a>
+        <a href="#roadmap" class="nav-item" data-view="roadmap-view">
+          <i class="fa-solid fa-route"></i> AI Roadmap
+        </a>
+        <a href="#gap-analysis" class="nav-item" data-view="gap-analysis-view">
+          <i class="fa-solid fa-chart-pie"></i> Skill Gap Report
+        </a>
+        <a href="#activities" class="nav-item" data-view="activities-view">
+          <i class="fa-solid fa-laptop-code"></i> Learning Activities
+        </a>
+        <a href="#assessment-select" class="nav-item" data-view="assessment-select-view">
+          <i class="fa-solid fa-vial-circle-check"></i> Take Assessment
+        </a>
+        <a href="#profile" class="nav-item" data-view="profile-view">
+          <i class="fa-solid fa-user-gear"></i> Student Profile
+        </a>
+        <a href="#recommendations" class="nav-item" data-view="recommendations-view">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> AI Recommendations
+        </a>
+        <a href="#history" class="nav-item" data-view="history-view">
+          <i class="fa-solid fa-clock-rotate-left"></i> Learning History
+        </a>
+        <a href="#admin" class="nav-item admin-only" data-view="admin-view" style="display: none;">
+          <i class="fa-solid fa-user-shield"></i> Admin Panel
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-pill">
+          <div class="avatar" id="user-avatar-initials">AM</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Alex Mercer</div>
+            <div class="user-role" id="user-display-role">Student</div>
+          </div>
+          <button id="logout-btn" title="Logout" style="background: none; border: none; color: var(--text-muted); cursor: pointer;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      
+      <!-- Sticky Top Navigation -->
+      <header class="navbar">
+        <div class="nav-left">
+          <button class="mobile-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+          <h2 class="page-heading" id="current-view-title">Student Dashboard</h2>
+        </div>
+        <div class="nav-right">
+          <div id="nav-coins-badge" class="badge badge-strong" style="font-size: 0.88rem; padding: 6px 14px; background: var(--warning-light); color: var(--warning);">
+            🪙 <span id="nav-coins-amount">350</span> Coins
+          </div>
+          <button class="theme-toggle" id="theme-toggle-btn" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="btn btn-secondary btn-sm" id="switch-role-btn">
+            <i class="fa-solid fa-repeat"></i> Switch to Admin
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area Views -->
+      <main class="content-area">
+
+        <!-- 1. LANDING PAGE VIEW -->
+        <section id="landing-view" class="view-section">
+          <div class="hero-banner">
+            <div class="hero-content">
+              <h1>Adaptive AI-Based Personalized Learning Path & Roadmap Generation System</h1>
+              <p>Achieve your dream tech role with dynamic, AI-curated roadmaps, XP progression, level titles, daily streaks, and skill badges that adapt to your performance.</p>
+              <div style="display: flex; gap: 16px;">
+                <button class="btn btn-primary" onclick="window.location.hash='#dashboard'">
+                  <i class="fa-solid fa-rocket"></i> Launch Student Portal
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.hash='#login'" style="background: rgba(255,255,255,0.2); color: white; border: none;">
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i> Login / Register
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-cols-3" style="margin-bottom: 32px;">
+            <div class="card">
+              <div class="stat-icon primary" style="margin-bottom: 16px;"><i class="fa-solid fa-microchip"></i></div>
+              <h3>AI Skill Gap Detection</h3>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">Scans diagnostic test scores, academic background, and target career prerequisites to spot hidden weak areas.</p>
+            </div>
+            <div class="card">
+              <div class="stat-icon success" style="margin-bottom: 16px;"><i class="fa-solid fa-diagram-project"></i></div>
+              <h3>Prerequisite DAG Graph</h3>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">Topologically sorts prerequisite dependencies so you master essential core concepts in the right logical order.</p>
+            </div>
+            <div class="card">
+              <div class="stat-icon warning" style="margin-bottom: 16px;"><i class="fa-solid fa-gamepad"></i></div>
+              <h3>Gamified AI Motivation</h3>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">Earn XP, unlock level titles, maintain daily streaks, complete AI personalized challenges, and redeem rewards.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-bullseye" style="color: var(--primary);"></i> Available Target Career Paths</h3>
+            </div>
+            <div class="grid-cols-3" id="landing-career-cards">
+              <!-- Dynamically populated via JavaScript -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. LOGIN / REGISTER VIEW -->
+        <section id="login-view" class="view-section">
+          <div style="max-width: 480px; margin: 40px auto;">
+            <div class="card">
+              <div style="text-align: center; margin-bottom: 24px;">
+                <div class="brand-icon" style="margin: 0 auto 12px; width: 50px; height: 50px; font-size: 24px;"><i class="fa-solid fa-brain"></i></div>
+                <h2 id="auth-form-title">Account Login</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Access your personalized AI learning portal</p>
+              </div>
+
+              <div style="background-color: var(--primary-light); padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 20px; font-size: 0.85rem; color: var(--primary);">
+                <strong>Demo Credentials:</strong><br>
+                • <strong>Student:</strong> student@example.com / password123<br>
+                • <strong>Admin:</strong> admin@example.com / admin123
+              </div>
+
+              <form id="auth-form">
+                <div class="form-group" id="name-group" style="display: none;">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" id="auth-name" class="form-control" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" id="auth-email" class="form-control" placeholder="student@example.com" value="student@example.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Password</label>
+                  <input type="password" id="auth-password" class="form-control" value="password123" required>
+                </div>
+
+                <div class="form-group" id="role-group" style="display: none;">
+                  <label class="form-label">Account Role</label>
+                  <select id="auth-role" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="admin">Faculty / Admin</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="auth-submit-btn">
+                  Sign In
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                <span id="auth-toggle-msg">Don't have an account?</span>
+                <a href="javascript:void(0)" id="auth-toggle-btn" style="font-weight: 600; margin-left: 6px;">Register Now</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. STUDENT DASHBOARD VIEW -->
+        <section id="dashboard-view" class="view-section active">
+          
+          <!-- Stat Banner -->
+          <div class="grid-cols-4" style="margin-bottom: 24px;">
+            <div class="card stat-card">
+              <div class="stat-icon primary"><i class="fa-solid fa-bullseye"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="dash-career-goal">Java Dev</div>
+                <div class="stat-label">Target Goal</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon success"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="dash-readiness">65%</div>
+                <div class="stat-label">Overall Readiness</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon warning"><i class="fa-solid fa-trophy"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="dash-level-title">Level 3</div>
+                <div class="stat-label" id="dash-xp-sublabel">250 / 500 XP</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon secondary"><i class="fa-solid fa-fire"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="dash-streak">5 Days</div>
+                <div class="stat-label">Learning Streak</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Dashboard Split -->
+          <div class="grid-cols-3">
+            
+            <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 24px;">
+              
+              <!-- AI Recommendation Callout Banner -->
+              <div class="card" style="background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(6,182,212,0.08)); border: 1px solid var(--primary-light);">
+                <div class="card-header" style="margin-bottom: 12px;">
+                  <h3 class="card-title" style="color: var(--primary);">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI Real-Time Recommendation Engine
+                  </h3>
+                  <span class="badge badge-strong">Active Agent</span>
+                </div>
+                <p id="dash-ai-recommendation-text" style="font-size: 0.98rem; font-weight: 500; color: var(--text-primary);">
+                  Analyzing student data...
+                </p>
+              </div>
+
+              <!-- Current Topic Focus -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-play" style="color: var(--primary);"></i> Current Module in Progress</h3>
+                  <span class="badge badge-weak" id="dash-topic-status">In Progress</span>
+                </div>
+                <div id="dash-current-topic-box">
+                  <h2 id="dash-topic-title" style="margin-bottom: 8px;">OOP Concepts</h2>
+                  <p id="dash-topic-desc" style="color: var(--text-secondary); margin-bottom: 16px;">Encapsulation, Inheritance, Polymorphism, and Interfaces</p>
+                  
+                  <div style="display: flex; gap: 16px; margin-bottom: 20px; font-size: 0.88rem; color: var(--text-muted);">
+                    <span><i class="fa-solid fa-clock"></i> Est. Hours: <strong id="dash-topic-hours">8h</strong></span>
+                    <span><i class="fa-solid fa-layer-group"></i> Difficulty: <strong id="dash-topic-diff">Intermediate</strong></span>
+                  </div>
+
+                  <h4 style="margin-bottom: 12px; font-size: 0.95rem;">Recommended Today's Activities:</h4>
+                  <div id="dash-todays-activities" style="display: flex; flex-direction: column; gap: 10px;">
+                    <!-- Activity items inserted dynamically -->
+                  </div>
+
+                  <div style="margin-top: 20px; display: flex; gap: 12px;">
+                    <button class="btn btn-primary btn-sm" id="start-assessment-btn">
+                      <i class="fa-solid fa-vial"></i> Take Topic Diagnostic Quiz
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="window.location.hash='#roadmap'">
+                      <i class="fa-solid fa-route"></i> View Full Roadmap
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill Readiness Radar & Bar Chart -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-chart-radar" style="color: var(--primary);"></i> Skill Gap Vector Radar</h3>
+                </div>
+                <div style="height: 280px; position: relative;">
+                  <canvas id="dashboardRadarChart"></canvas>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right 1 Col: Overall Roadmap Progress & History Log -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-bars-progress" style="color: var(--primary);"></i> Roadmap Progress</h3>
+                </div>
+                <div style="text-align: center; padding: 12px 0;">
+                  <div style="font-size: 2.4rem; font-weight: 800; font-family: 'Outfit';" id="dash-roadmap-percent">30%</div>
+                  <div class="progress-container">
+                    <div class="progress-bar" id="dash-roadmap-progressbar" style="width: 30%;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+                    <span>Completed: <strong id="dash-topics-completed">2</strong> topics</span>
+                    <span>Total: <strong id="dash-topics-total">12</strong> topics</span>
+                  </div>
+                </div>
+                <hr style="border-color: var(--border-color); margin: 16px 0;">
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                  <i class="fa-solid fa-calendar-check" style="color: var(--primary);"></i> Target Completion Date:<br>
+                  <strong id="dash-completion-date" style="font-size: 1rem; color: var(--text-primary);">2026-12-25</strong>
+                </div>
+              </div>
+
+              <!-- Recent Activity History Log -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> Recent Activity Log</h3>
+                </div>
+                <div id="dash-history-log" style="display: flex; flex-direction: column; gap: 12px;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 4. GAMIFICATION PAGE VIEW -->
+        <section id="gamification-view" class="view-section">
+          
+          <!-- Level + XP Progress Banner -->
+          <div id="gamification-banner-container">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Grid split: Challenges & Badges vs Leaderboard & Shop -->
+          <div class="grid-cols-2" style="margin-bottom: 24px;">
+            
+            <!-- Left Col: Daily AI Challenges & Badges -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-bullseye" style="color: var(--primary);"></i> Daily AI Challenges & Bounties</h3>
+                </div>
+                <div id="challenges-list-container">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-trophy" style="color: var(--primary);"></i> Achievements & Badges Gallery</h3>
+                </div>
+                <div class="grid-cols-3" id="badges-grid-container" style="gap: 16px;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Col: Leaderboard & Reward Shop -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+              
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-ranking-star" style="color: var(--primary);"></i> Student Leaderboard</h3>
+                  <div style="display: flex; gap: 6px;">
+                    <button class="btn btn-secondary btn-sm" onclick="fetchLeaderboard('all_time')">All Time</button>
+                    <button class="btn btn-secondary btn-sm" onclick="fetchLeaderboard('weekly')">Weekly</button>
+                  </div>
+                </div>
+                <div id="leaderboard-table-container">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"><i class="fa-solid fa-store" style="color: var(--primary);"></i> Virtual Learning Coins Reward Shop</h3>
+                </div>
+                <div class="grid-cols-2" id="reward-shop-grid-container" style="gap: 16px;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 5. AI PERSONALIZED ROADMAP VIEW -->
+        <section id="roadmap-view" class="view-section">
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 1.4rem;">AI-Generated Adaptive Learning Roadmap</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Prerequisite DAG Sorted Nodes • Dynamic Real-Time Adaptation Enabled</p>
+              </div>
+              <button class="btn btn-primary btn-sm" id="recalculate-roadmap-btn">
+                <i class="fa-solid fa-rotate"></i> Recalculate AI Roadmap
+              </button>
+            </div>
+          </div>
+
+          <div class="roadmap-timeline" id="roadmap-nodes-container">
+            <!-- Dynamically rendered timeline nodes -->
+          </div>
+        </section>
+
+        <!-- 6. AI SKILL GAP REPORT VIEW -->
+        <section id="gap-analysis-view" class="view-section">
+          <div class="grid-cols-2" style="margin-bottom: 24px;">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa-solid fa-pie-chart" style="color: var(--primary);"></i> Skill Breakdown Ratio</h3>
+              </div>
+              <div style="height: 250px; position: relative;">
+                <canvas id="gapPieChart"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa-solid fa-chart-bar" style="color: var(--primary);"></i> Skill Mastery Scores (%)</h3>
+              </div>
+              <div style="height: 250px; position: relative;">
+                <canvas id="gapBarChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-list-check" style="color: var(--primary);"></i> Detailed Skill Gap Classification</h3>
+            </div>
+            <div id="gap-skills-table-box">
+              <!-- Dynamically populated skills list -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. LEARNING ACTIVITIES VIEW -->
+        <section id="activities-view" class="view-section">
+          <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-book-open" style="color: var(--primary);"></i> AI Recommended Learning Activities</h3>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Handpicked resources tailored to strengthen your weak skills and missing prerequisites.</p>
+          </div>
+
+          <div class="grid-cols-3" id="activities-grid">
+            <!-- Dynamically populated cards -->
+          </div>
+        </section>
+
+        <!-- 8. ASSESSMENT SELECT & QUIZ VIEW -->
+        <section id="assessment-select-view" class="view-section">
+          <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-vial" style="color: var(--primary);"></i> Select Topic Skill Assessment</h3>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Test your knowledge in any topic to trigger the AI Adaptive Roadmap Engine & Earn XP.</p>
+          </div>
+
+          <div class="grid-cols-3" id="assessment-topic-list">
+            <!-- Dynamically populated topic selection cards -->
+          </div>
+        </section>
+
+        <!-- Assessment Active Quiz Section -->
+        <section id="quiz-view" class="view-section">
+          <div class="quiz-container">
+            <div class="card" style="margin-bottom: 24px;">
+              <div class="card-header">
+                <h3 class="card-title" id="quiz-title">Diagnostic Assessment</h3>
+                <span class="badge badge-weak" id="quiz-timer"><i class="fa-solid fa-stopwatch"></i> 15:00</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar" id="quiz-progress-bar" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div class="card" id="quiz-question-card">
+              <!-- Question rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Assessment Results View -->
+        <section id="result-view" class="view-section">
+          <div class="quiz-container">
+            <div class="card" style="text-align: center; margin-bottom: 24px; padding: 40px 24px;">
+              <div class="stat-icon primary" style="margin: 0 auto 16px; width: 72px; height: 72px; font-size: 2.2rem;">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <h2 id="result-score-title" style="font-size: 2.2rem;">Assessment Score: 85%</h2>
+              <p id="result-score-subtitle" style="color: var(--text-secondary); margin-top: 8px; font-size: 1.1rem;">
+                Great work! Your roadmap has been dynamically adapted.
+              </p>
+
+              <!-- Rewards Alert Callout -->
+              <div class="card" style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,182,212,0.1)); border: 1px solid var(--success); margin: 20px 0; text-align: left;">
+                <h4 style="color: var(--success); margin-bottom: 4px;"><i class="fa-solid fa-gift"></i> Rewards Earned:</h4>
+                <div id="result-gamification-rewards-text" style="font-weight: 600; font-size: 1rem; color: var(--text-primary);">
+                  +30 XP Quiz • +50 Bonus XP • +50 Learning Coins
+                </div>
+              </div>
+
+              <div class="card" style="background-color: var(--bg-tertiary); margin: 24px 0; text-align: left;">
+                <h4 style="color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-robot"></i> AI Dynamic Roadmap Engine Log:</h4>
+                <p id="result-ai-adaptation-msg" style="font-weight: 500; font-size: 0.95rem;">Topic marked as Mastered! Unlocking downstream prerequisites.</p>
+              </div>
+
+              <div style="display: flex; gap: 16px; justify-content: center;">
+                <button class="btn btn-primary" onclick="window.location.hash='#roadmap'">
+                  <i class="fa-solid fa-route"></i> View Updated AI Roadmap
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.hash='#dashboard'">
+                  <i class="fa-solid fa-house"></i> Return to Dashboard
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. STUDENT PROFILE VIEW -->
+        <section id="profile-view" class="view-section">
+          <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> Student Profile & Career Goal Settings</h3>
+            </div>
+            
+            <form id="profile-form">
+              <div class="grid-cols-2">
+                <div class="form-group">
+                  <label class="form-label">Career Goal</label>
+                  <select id="prof-career-goal" class="form-control">
+                    <!-- Populated dynamically -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Target Role</label>
+                  <input type="text" id="prof-target-role" class="form-control" value="Java Backend Engineer">
+                </div>
+              </div>
+
+              <div class="grid-cols-2">
+                <div class="form-group">
+                  <label class="form-label">Academic Year</label>
+                  <select id="prof-academic-year" class="form-control">
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year / Senior">4th Year / Senior</option>
+                    <option value="Graduate / Alum">Graduate / Alum</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Department</label>
+                  <input type="text" id="prof-department" class="form-control" value="Computer Science Engineering">
+                </div>
+              </div>
+
+              <div class="grid-cols-2">
+                <div class="form-group">
+                  <label class="form-label">Current CGPA / Percentage</label>
+                  <input type="number" step="0.01" id="prof-cgpa" class="form-control" value="3.75">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Available Study Hours per Day</label>
+                  <input type="number" step="0.5" id="prof-hours" class="form-control" value="3.0">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Current Known Skills (Comma Separated)</label>
+                <input type="text" id="prof-current-skills" class="form-control" value="Programming Fundamentals, Java Basics, HTML/CSS">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Preferred Learning Style</label>
+                <select id="prof-learning-style" class="form-control">
+                  <option value="Practical">Practical Hands-On Projects</option>
+                  <option value="Visual">Visual Video Lessons & Diagrams</option>
+                  <option value="Reading">In-depth Reading & Documentation</option>
+                  <option value="Interactive">Interactive Quizzes & Coding Challenges</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                  <input type="checkbox" id="prof-leaderboard-privacy" style="width: auto;">
+                  <span>Hide my profile from public Student Leaderboard</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Recalculate Roadmap
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- 10. AI RECOMMENDATIONS VIEW -->
+        <section id="recommendations-view" class="view-section">
+          <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i> AI Recommendation History</h3>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Context-aware suggestions generated by analyzing your quiz performance, available time, and prerequisite gaps.</p>
+          </div>
+
+          <div id="recommendations-list-container" style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 11. LEARNING HISTORY VIEW -->
+        <section id="history-view" class="view-section">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> Activity & Performance Log</h3>
+            </div>
+            <div id="full-history-table-container">
+              <!-- Dynamically populated table -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. ADMIN DASHBOARD VIEW -->
+        <section id="admin-view" class="view-section">
+          <div class="grid-cols-4" style="margin-bottom: 24px;">
+            <div class="card stat-card">
+              <div class="stat-icon primary"><i class="fa-solid fa-users"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="admin-total-students">1</div>
+                <div class="stat-label">Enrolled Students</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon success"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="admin-total-courses">6</div>
+                <div class="stat-label">Career Courses</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon warning"><i class="fa-solid fa-book"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="admin-total-topics">18</div>
+                <div class="stat-label">Curriculum Topics</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon secondary"><i class="fa-solid fa-clipboard-question"></i></div>
+              <div class="stat-info">
+                <div class="stat-value" id="admin-total-questions">54</div>
+                <div class="stat-label">Question Bank</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-cols-2">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa-solid fa-user-graduate" style="color: var(--primary);"></i> Registered Student Roster</h3>
+              </div>
+              <div id="admin-students-table">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa-solid fa-circle-plus" style="color: var(--primary);"></i> Add Assessment Question</h3>
+              </div>
+              <form id="admin-add-question-form">
+                <div class="form-group">
+                  <label class="form-label">Target Topic</label>
+                  <select id="admin-q-topic" class="form-control">
+                    <!-- Populated dynamically -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Question Text</label>
+                  <textarea id="admin-q-text" class="form-control" rows="2" required placeholder="What is the concept of..."></textarea>
+                </div>
+                <div class="grid-cols-2">
+                  <div class="form-group">
+                    <label class="form-label">Option A</label>
+                    <input type="text" id="admin-q-opt-a" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Option B</label>
+                    <input type="text" id="admin-q-opt-b" class="form-control" required>
+                  </div>
+                </div>
+                <div class="grid-cols-2">
+                  <div class="form-group">
+                    <label class="form-label">Correct Answer</label>
+                    <input type="text" id="admin-q-correct" class="form-control" required placeholder="Must match option exact string">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Difficulty</label>
+                    <select id="admin-q-diff" class="form-control">
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-plus"></i> Add Question to Bank
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Topic Node Detail Drawer / Modal -->
+  <div class="modal-overlay" id="node-modal">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 id="modal-topic-name" style="font-size: 1.4rem;">Topic Details</h3>
+        <button id="modal-close-btn" style="background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      </div>
+      <p id="modal-topic-desc" style="color: var(--text-secondary); margin-bottom: 16px;">Description...</p>
+
+      <div style="background-color: var(--bg-tertiary); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; font-size: 0.9rem;">
+          <div>Difficulty: <strong id="modal-topic-diff">Intermediate</strong></div>
+          <div>Est. Time: <strong id="modal-topic-hours">6 Hours</strong></div>
+          <div>Status: <span id="modal-topic-status-badge" class="badge badge-weak">Weak</span></div>
+          <div>Mastery: <strong id="modal-topic-mastery">45%</strong></div>
+        </div>
+      </div>
+
+      <h4 style="margin-bottom: 12px;">Recommended Activities:</h4>
+      <div id="modal-topic-activities" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button class="btn btn-primary" id="modal-start-quiz-btn">
+          <i class="fa-solid fa-vial"></i> Launch Diagnostic Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Core JavaScript Modules -->
+  <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/roadmap.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
